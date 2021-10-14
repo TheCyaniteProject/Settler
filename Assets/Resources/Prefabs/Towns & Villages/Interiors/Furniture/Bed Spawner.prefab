@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7111528538987924609
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7549352770849326554}
+  - component: {fileID: 7020025189660232415}
+  m_Layer: 0
+  m_Name: Bed Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7549352770849326554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111528538987924609}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.326712, y: 0, z: -4.8864594}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7020025189660232415
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7111528538987924609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36f15e97225abba4f9c0c852b7ac96cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHorizontalRotation: 3
+  maxVerticalRotation: 0
+  maxPositionOffset: {x: 0.05, y: 0.05}
+  canSpawnNothing: 0
+  objects:
+  - {fileID: 1180824870320980, guid: 6d87d6bde4c26fb4c985d3abec6dd859, type: 3}
+  gizmoSize: {x: 2, y: 1.1, z: 2.5}
+  gizmoColor: {r: 0, g: 0, b: 1, a: 1}
+  debugGenerate: 0
