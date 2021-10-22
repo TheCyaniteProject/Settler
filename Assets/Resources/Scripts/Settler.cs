@@ -26,17 +26,20 @@ public class Settler : MonoBehaviour
     public float pathCutDistance = 10;
     [Range(0, 100)]
     public float fromPathCutChance = 0;
+    public bool hasWall = true;
     public float wallDistance = 10;
     public float towerDistance = 10;
     public int towerCount = 10;
     public int wallCount = 10;
     [Range(0, 100)]
     public float fromWallCutChance = 0;
+    public float coreBuildingSpread = 1;
     [Header("Prefabs")]
     public LayerMask structureMask;
     public GameObject tower;
     public GameObject wall;
     public GameObject gate;
+    public GameObject[] coreBuildings; // Guilds and other important building that will spawn in the middle of the city
     public List<Structure> houses;
     public List<Structure> shops;
     public List<Structure> roadDeco;
@@ -76,8 +79,19 @@ public class Settler : MonoBehaviour
         }
         structures.Clear();
 
-        GenerateWalls();
-        //return;
+        if (hasWall)
+            GenerateWalls();
+
+        float radius = coreBuildingSpread;
+        for (int i = 0; i < coreBuildings.Length; i++)
+        {
+            float angle = i * Mathf.PI * 2f / coreBuildings.Length;
+            Vector3 newPos = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
+            GameObject _core = Instantiate(coreBuildings[i], transform);
+            _core.transform.localPosition = newPos;
+            _core.SetActive(true);
+            structures.Add(_core);
+        }
 
         List<Vector2> pathEnds = new List<Vector2>();
         List<Vector2> pathPositions = new List<Vector2>();
@@ -233,11 +247,11 @@ public class Settler : MonoBehaviour
     private void GenerateWalls()
     {
         List<GameObject> towers = new List<GameObject>();
-        float radius = wallDistance/2 * towerDistance;
+        float radius = towerDistance;
         for (int i = 0; i < towerCount; i++)
         {
             float angle = i * Mathf.PI * 2f / towerCount;
-            Vector3 newPos = new Vector3(Mathf.Cos(angle) * radius, 1, Mathf.Sin(angle) * radius);
+            Vector3 newPos = new Vector3(Mathf.Cos(angle) * radius, 0, Mathf.Sin(angle) * radius);
             GameObject _tower = Instantiate(tower, transform);
             _tower.transform.localPosition = newPos;
             _tower.SetActive(true);
@@ -268,8 +282,6 @@ public class Settler : MonoBehaviour
                     _wall.transform.localEulerAngles = new Vector3(0, Quaternion.FromToRotation(Vector3.up, direction).eulerAngles.y, 0);
                     _wall.SetActive(true);
                     structures.Add(_wall);
-
-                    Debug.Log(Vector3.Distance(towers[0].transform.position, towers[i - 1].transform.position));
                 }
             }
             else
